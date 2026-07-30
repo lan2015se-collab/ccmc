@@ -4,24 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CCMC | CandyCrashMc — 基岩版純生存伺服器</title>
-  <meta name="description" content="CandyCrashMc（CCMC）— 基岩版正版 Minecraft 純生存伺服器，歡迎台灣朋朋加入一起玩！由偽人實驗室 FP Laboratory 營運。">
+  <meta name="description" content="CandyCrashMc（CCMC）— 基岩版正版 Minecraft 純生存伺服器，歡迎台灣朋朋加入一起玩！">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="assets/logo-fpl.png">
+  <link rel="icon" type="image/png" href="asset/logo-fpl.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Navigation -->
   <header class="header" id="header">
     <div class="container nav-container">
       <a href="#home" class="logo">
-        <img src="assets/logo-fpl.png" alt="偽人實驗室" class="logo-img">
+        <img src="asset/logo-fpl.png" alt="偽人實驗室" class="logo-img">
         <span class="logo-text">CCMC</span>
       </a>
       <nav class="nav" id="nav">
         <a href="#home" class="nav-link">首頁</a>
         <a href="#about" class="nav-link">關於伺服器</a>
+        <a href="#connect" class="nav-link">連線資訊</a>
         <a href="#rules" class="nav-link">伺服器規則</a>
         <a href="#join" class="nav-link">申請加入</a>
         <a href="#discord" class="nav-link">Discord</a>
@@ -34,20 +34,16 @@
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="hero-bg"></div>
     <div class="container hero-content">
       <div class="hero-badge">偽人實驗室 × CandyCrashMc</div>
       <h1 class="hero-title">CandyCrashMc</h1>
-      <p class="hero-subtitle">CCMC · 基岩版正版 Minecraft 純生存</p>
+      <p class="hero-subtitle">基岩版正版 Minecraft 純生存</p>
       <p class="hero-desc">歡迎台灣朋朋加入一起玩！</p>
 
       <div class="ip-box">
         <span class="ip-label">伺服器 IP</span>
         <code class="ip-address" id="serverIp">ccmc.dpdns.org</code>
-        <button class="btn-copy" id="copyIp" title="複製 IP">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          複製
-        </button>
+        <button class="btn-copy" id="copyIp">複製</button>
       </div>
 
       <div class="hero-btns">
@@ -55,7 +51,7 @@
         <a href="https://discord.gg/XUxYk52GQ7" target="_blank" rel="noopener" class="btn btn-outline">加入 Discord</a>
       </div>
 
-      <p class="hero-note">⚠️ 僅支援基岩版（Bedrock）· 無 DC↔MC 聊天互通</p>
+      <p class="hero-note">僅支援基岩版（Bedrock）· 無 DC↔MC 聊天互通</p>
     </div>
   </section>
 
@@ -68,26 +64,60 @@
       </div>
       <div class="about-grid">
         <div class="about-card">
-          <div class="about-icon">🎮</div>
           <h3>純生存體驗</h3>
           <p>專注於經典生存模式，沒有複雜小遊戲干擾，享受建造、探險與生存的樂趣。</p>
         </div>
         <div class="about-card">
-          <div class="about-icon">📱</div>
           <h3>基岩版專屬</h3>
           <p>僅支援 Minecraft 基岩版（Bedrock Edition）正版玩家，手機、主機、Windows 皆可加入。</p>
         </div>
         <div class="about-card">
-          <div class="about-icon">🇹🇼</div>
           <h3>台灣友好社群</h3>
           <p>歡迎台灣朋朋加入！由偽人實驗室（FP Laboratory）營運，氣氛輕鬆友善。</p>
         </div>
         <div class="about-card">
-          <div class="about-icon">🔒</div>
           <h3>白名單制</h3>
           <p>採申請制加入，確保社群品質。填寫表單後管理員會審核並將你加入白名單。</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Connect Info -->
+  <section class="section connect" id="connect">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">連線資訊</span>
+        <h2 class="section-title">如何加入伺服器</h2>
+      </div>
+      <div class="connect-grid">
+        <div class="connect-card">
+          <h3>主要連線</h3>
+          <div class="connect-row">
+            <span class="connect-label">IP Address</span>
+            <code class="connect-value" id="mainIp">ccmc.dpdns.org</code>
+            <button class="btn-copy-sm" data-copy="ccmc.dpdns.org">複製</button>
+          </div>
+          <div class="connect-row">
+            <span class="connect-label">IP Port</span>
+            <code class="connect-value">19132</code>
+            <span class="connect-note">基岩版預設 Port</span>
+          </div>
+        </div>
+        <div class="connect-card">
+          <h3>備用連線</h3>
+          <div class="connect-row">
+            <span class="connect-label">Backup IP</span>
+            <code class="connect-value" id="backupIp">144.31.46.9</code>
+            <button class="btn-copy-sm" data-copy="144.31.46.9">複製</button>
+          </div>
+          <div class="connect-row">
+            <span class="connect-label">Backup Port</span>
+            <code class="connect-value">10425</code>
+          </div>
+        </div>
+      </div>
+      <p class="connect-tip">建議優先使用主要 IP，若無法連線再嘗試備用 IP。</p>
     </div>
   </section>
 
@@ -114,7 +144,7 @@
         <div class="rule-item"><span class="rule-num">09</span><p>請使用適當的語言與名稱，避免使用具攻擊性、侮辱性或引發爭議的暱稱與頭貼</p></div>
       </div>
       <div class="rules-warning">
-        ⚠️ 違反上述規則將會受到禁言或踢出伺服器的處分
+        違反上述規則將會受到禁言或踢出伺服器的處分
       </div>
     </div>
   </section>
@@ -125,21 +155,19 @@
       <div class="section-header">
         <span class="section-tag">申請加入</span>
         <h2 class="section-title">白名單申請表單</h2>
-        <p class="section-desc">填寫以下資料後，管理員會審核並將您加入白名單。審核結果會寄至您的電子郵件。</p>
+        <p class="section-desc">填寫後管理員會審核並將您加入白名單，結果會寄至您的電子郵件。</p>
       </div>
 
       <form class="join-form" id="joinForm">
         <div class="form-group">
           <label for="gamertag">Xbox 玩家名稱（Gamertag）<span class="required">*</span></label>
-          <input type="text" id="gamertag" name="gamertag" required 
-                 placeholder="請輸入您的 Xbox Gamertag" autocomplete="off">
-          <p class="form-hint">此名稱將用於加入白名單，請務必正確填寫正版基岩版帳號名稱</p>
+          <input type="text" id="gamertag" name="gamertag" required placeholder="請輸入您的 Xbox Gamertag" autocomplete="off">
+          <p class="form-hint">請務必正確填寫正版基岩版帳號名稱</p>
         </div>
 
         <div class="form-group">
           <label for="email">電子郵件<span class="required">*</span></label>
-          <input type="email" id="email" name="email" required 
-                 placeholder="your@email.com">
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
           <p class="form-hint">我們會將審核結果寄至此信箱</p>
         </div>
 
@@ -156,10 +184,7 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
-          確定送出申請
-        </button>
-
+        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">確定送出申請</button>
         <div class="form-status" id="formStatus" hidden></div>
       </form>
     </div>
@@ -169,23 +194,20 @@
   <section class="section discord" id="discord">
     <div class="container">
       <div class="discord-card">
-        <img src="assets/logo-fpl.png" alt="偽人實驗室" class="discord-logo">
+        <img src="asset/logo-fpl.png" alt="偽人實驗室" class="discord-logo">
         <h2>加入偽人實驗室 Discord</h2>
         <p>與其他玩家交流、獲取最新公告、申請協助</p>
-        <a href="https://discord.gg/XUxYk52GQ7" target="_blank" rel="noopener" class="btn btn-primary">
-          立即加入 Discord
-        </a>
-        <p class="discord-note">⚠️ 本伺服器目前無 Discord ↔ Minecraft 聊天互通</p>
+        <a href="https://discord.gg/XUxYk52GQ7" target="_blank" rel="noopener" class="btn btn-primary">立即加入 Discord</a>
+        <p class="discord-note">本伺服器目前無 Discord ↔ Minecraft 聊天互通</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="assets/logo-fpl.png" alt="偽人實驗室" class="footer-logo">
+          <img src="asset/logo-fpl.png" alt="偽人實驗室" class="footer-logo">
           <div>
             <strong>CCMC · CandyCrashMc</strong>
             <p>基岩版純生存 · 偽人實驗室營運</p>
@@ -194,6 +216,7 @@
         <div class="footer-links">
           <a href="#home">首頁</a>
           <a href="#about">關於</a>
+          <a href="#connect">連線資訊</a>
           <a href="#rules">規則</a>
           <a href="#join">申請加入</a>
           <a href="https://discord.gg/XUxYk52GQ7" target="_blank" rel="noopener">Discord</a>
