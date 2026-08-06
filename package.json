@@ -1,0 +1,16 @@
+{
+  "name": "ccmc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CCMC CandyCrashMc 基岩版純生存伺服器網站",
+  "scripts": {
+    "dev": "echo \"Static site - open index.html or use Vercel dev\"",
+    "build": "echo \"No build step\""
+  },
+  "dependencies": {
+    "resend": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
