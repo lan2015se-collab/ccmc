@@ -28,7 +28,6 @@ async function copyText(text, btn) {
       btn.classList.remove('copied');
     }, 1500);
   } catch (err) {
-    // Fallback
     const ta = document.createElement('textarea');
     ta.value = text;
     document.body.appendChild(ta);
@@ -86,25 +85,28 @@ if (joinForm) {
     submitBtn.disabled = true;
     submitBtn.textContent = '送出中...';
 
-    // 目前為前端演示，之後可接後端 / Mailjet
-    const payload = {
-      gamertag,
-      email,
-      agreed: true,
-      timestamp: new Date().toISOString(),
-      source: 'CCMC Website Join Form'
-    };
+    try {
+      const response = await fetch('/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ gamertag, email }),
+      });
 
-    console.log('白名單申請資料：', payload);
+      const data = await response.json();
 
-    await new Promise(r => setTimeout(r, 600));
+      if (response.ok && data.success) {
+        showStatus(
+          `申請已送出！\nGamertag：${gamertag}\n我們會盡快審核並回覆 ${email}`,
+          'success'
+        );
+        joinForm.reset();
+      } else {
+        showStatus('送出失敗：' + (data.error || '請稍後再試'), 'error');
+      }
+    } catch (err) {
+      showStatus('網路錯誤，請稍後再試。', 'error');
+    }
 
-    showStatus(
-      `申請已送出！\nGamertag：${gamertag}\n我們會盡快審核並將結果寄至 ${email}`,
-      'success'
-    );
-
-    joinForm.reset();
     submitBtn.disabled = false;
     submitBtn.textContent = '確定送出申請';
   });
