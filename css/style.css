@@ -17,7 +17,7 @@
   --success: #3fb950;
   --danger: #f85149;
   --radius: 8px;
-  --font: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font: 'Noto Sans TC', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -32,7 +32,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 移除所有藍色 focus 框 */
+/* 移除藍色 focus 框 */
 *:focus {
   outline: none !important;
 }
@@ -333,6 +333,15 @@ img {
   background: var(--bg-card);
 }
 
+.connect-oneclick {
+  max-width: 400px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.connect-oneclick .btn {
+  margin-bottom: 10px;
+}
+
 .connect-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -494,14 +503,9 @@ img {
   margin-top: 5px;
 }
 
-.checkbox-label input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+/* Checkbox */
+.checkbox-group {
+  margin-bottom: 24px;
 }
 
 .checkbox-label {
@@ -512,10 +516,17 @@ img {
   font-weight: 400 !important;
   font-size: 0.85rem;
   line-height: 1.5;
+  position: relative;
 }
 
 .checkbox-label input {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .checkmark {
@@ -552,6 +563,7 @@ img {
   border-radius: 6px;
   font-size: 0.9rem;
   text-align: center;
+  white-space: pre-line;
 }
 .form-status.success {
   background: rgba(63, 185, 80, 0.12);
