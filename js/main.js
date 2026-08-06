@@ -41,17 +41,14 @@ async function copyText(text, btn) {
   }
 }
 
-// ===== Hero IP Copy =====
 const copyIpBtn = document.getElementById('copyIp');
 const serverIp = document.getElementById('serverIp');
-
 if (copyIpBtn && serverIp) {
   copyIpBtn.addEventListener('click', () => {
     copyText(serverIp.textContent.trim(), copyIpBtn);
   });
 }
 
-// ===== Connect section copy buttons =====
 document.querySelectorAll('.btn-copy-sm').forEach(btn => {
   btn.addEventListener('click', () => {
     const text = btn.getAttribute('data-copy');
@@ -59,7 +56,7 @@ document.querySelectorAll('.btn-copy-sm').forEach(btn => {
   });
 });
 
-// ===== Join Form（會真的寄信）=====
+// ===== Join Form =====
 const joinForm = document.getElementById('joinForm');
 const formStatus = document.getElementById('formStatus');
 const submitBtn = document.getElementById('submitBtn');
@@ -68,17 +65,31 @@ if (joinForm) {
   joinForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const gamertag = document.getElementById('gamertag').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const agree = document.getElementById('agree').checked;
+    const gamertagEl = document.getElementById('gamertag');
+    const emailEl = document.getElementById('email');
+    const agreeEl = document.getElementById('agree');
 
-    if (!gamertag || !email || !agree) {
-      showStatus('請完整填寫所有必填欄位並同意規則。', 'error');
+    const gamertag = (gamertagEl?.value || '').trim();
+    const email = (emailEl?.value || '').trim();
+    const agree = !!agreeEl?.checked;
+
+    if (!gamertag) {
+      showStatus('請填寫 Xbox 玩家名稱（Gamertag）。', 'error');
+      gamertagEl?.focus();
       return;
     }
-
+    if (!email) {
+      showStatus('請填寫電子郵件。', 'error');
+      emailEl?.focus();
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showStatus('請輸入有效的電子郵件地址。', 'error');
+      emailEl?.focus();
+      return;
+    }
+    if (!agree) {
+      showStatus('請勾選同意伺服器規則。', 'error');
       return;
     }
 
@@ -92,7 +103,7 @@ if (joinForm) {
         body: JSON.stringify({ gamertag, email }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.success) {
         showStatus(
@@ -101,7 +112,7 @@ if (joinForm) {
         );
         joinForm.reset();
       } else {
-        showStatus('送出失敗：' + (data.error || '請稍後再試'), 'error');
+        showStatus('送出失敗：' + (data.error || data.detail || '請稍後再試'), 'error');
       }
     } catch (err) {
       showStatus('網路錯誤，請稍後再試。', 'error');
@@ -120,13 +131,10 @@ function showStatus(message, type) {
   formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// ===== Header scroll effect =====
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
   if (!header) return;
-  if (window.scrollY > 30) {
-    header.style.background = 'rgba(13, 17, 23, 0.95)';
-  } else {
-    header.style.background = 'rgba(13, 17, 23, 0.9)';
-  }
+  header.style.background = window.scrollY > 30
+    ? 'rgba(13, 17, 23, 0.95)'
+    : 'rgba(13, 17, 23, 0.9)';
 });
