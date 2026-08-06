@@ -59,7 +59,7 @@ document.querySelectorAll('.btn-copy-sm').forEach(btn => {
   });
 });
 
-// ===== Join Form =====
+// ===== Join Form（會真的寄信）=====
 const joinForm = document.getElementById('joinForm');
 const formStatus = document.getElementById('formStatus');
 const submitBtn = document.getElementById('submitBtn');
