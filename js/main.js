@@ -1,5 +1,5 @@
-// ===== EmailJS（改成你的 Public Key）=====
-emailjs.init('wFL6YBEVK-6eQCoM6');
+// ===== 改成你的 EmailJS Public Key =====
+emailjs.init('aOHKgzUh3ITq0nFnH');
 
 // ===== Mobile Menu =====
 const menuToggle = document.getElementById('menuToggle');
@@ -56,7 +56,7 @@ document.querySelectorAll('.btn-copy-sm').forEach(btn => {
   });
 });
 
-// ===== 表單寄信 =====
+// ===== 表單（EmailJS）=====
 const joinForm = document.getElementById('joinForm');
 const formStatus = document.getElementById('formStatus');
 const submitBtn = document.getElementById('submitBtn');
@@ -91,8 +91,8 @@ if (joinForm) {
 
     try {
       await emailjs.send(
-        'service_ma8rdvh',   // 例如 service_xxxxx
-        'template_wd96pkt',  // 例如 template_xxxxx
+        'service_ma8rdvh',    // 例如 service_xxxxx
+        'template_kcxejbg',   // 例如 template_xxxxx
         {
           gamertag: gamertag,
           email: email,
@@ -107,7 +107,7 @@ if (joinForm) {
       joinForm.reset();
     } catch (err) {
       console.error(err);
-      showStatus('送出失敗，請稍後再試。', 'error');
+      showStatus('送出失敗：' + (err?.text || err?.message || '請稍後再試'), 'error');
     }
 
     submitBtn.disabled = false;
