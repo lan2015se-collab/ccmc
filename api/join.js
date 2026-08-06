@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: 'CCMC 白名單 <noreply@send.unid.ccwu.cc>',
+      from: 'CCMC 白名單 <noreply@unid.ccwu.cc>',
       to: ['illusd@illusd.com'],
       subject: `【CCMC 白名單申請】${gamertag}`,
       text: `Gamertag：${gamertag}\nEmail：${email}\n時間：${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}`,
