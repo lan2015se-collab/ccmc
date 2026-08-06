@@ -1,3 +1,6 @@
+// ===== EmailJS（改成你的 Public Key）=====
+emailjs.init('wFL6YBEVK-6eQCoM6');
+
 // ===== Mobile Menu =====
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');
@@ -7,7 +10,6 @@ if (menuToggle && nav) {
     menuToggle.classList.toggle('active');
     nav.classList.toggle('open');
   });
-
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       menuToggle.classList.remove('active');
@@ -16,7 +18,7 @@ if (menuToggle && nav) {
   });
 }
 
-// ===== Copy Helper =====
+// ===== Copy =====
 async function copyText(text, btn) {
   try {
     await navigator.clipboard.writeText(text);
@@ -35,9 +37,7 @@ async function copyText(text, btn) {
     document.execCommand('copy');
     document.body.removeChild(ta);
     btn.textContent = '已複製';
-    setTimeout(() => {
-      btn.textContent = '複製';
-    }, 1500);
+    setTimeout(() => { btn.textContent = '複製'; }, 1500);
   }
 }
 
@@ -56,7 +56,7 @@ document.querySelectorAll('.btn-copy-sm').forEach(btn => {
   });
 });
 
-// ===== Join Form =====
+// ===== 表單寄信 =====
 const joinForm = document.getElementById('joinForm');
 const formStatus = document.getElementById('formStatus');
 const submitBtn = document.getElementById('submitBtn');
@@ -65,27 +65,20 @@ if (joinForm) {
   joinForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const gamertagEl = document.getElementById('gamertag');
-    const emailEl = document.getElementById('email');
-    const agreeEl = document.getElementById('agree');
-
-    const gamertag = (gamertagEl?.value || '').trim();
-    const email = (emailEl?.value || '').trim();
-    const agree = !!agreeEl?.checked;
+    const gamertag = (document.getElementById('gamertag')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
+    const agree = !!document.getElementById('agree')?.checked;
 
     if (!gamertag) {
       showStatus('請填寫 Xbox 玩家名稱（Gamertag）。', 'error');
-      gamertagEl?.focus();
       return;
     }
     if (!email) {
       showStatus('請填寫電子郵件。', 'error');
-      emailEl?.focus();
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showStatus('請輸入有效的電子郵件地址。', 'error');
-      emailEl?.focus();
       return;
     }
     if (!agree) {
@@ -97,25 +90,24 @@ if (joinForm) {
     submitBtn.textContent = '送出中...';
 
     try {
-      const response = await fetch('/api/join', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ gamertag, email }),
-      });
+      await emailjs.send(
+        'service_ma8rdvh',   // 例如 service_xxxxx
+        'template_wd96pkt',  // 例如 template_xxxxx
+        {
+          gamertag: gamertag,
+          email: email,
+          time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+        }
+      );
 
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok && data.success) {
-        showStatus(
-          `申請已送出！\nGamertag：${gamertag}\n我們會盡快審核並回覆 ${email}`,
-          'success'
-        );
-        joinForm.reset();
-      } else {
-        showStatus('送出失敗：' + (data.error || data.detail || '請稍後再試'), 'error');
-      }
+      showStatus(
+        `申請已送出！\nGamertag：${gamertag}\n我們會盡快審核並回覆 ${email}`,
+        'success'
+      );
+      joinForm.reset();
     } catch (err) {
-      showStatus('網路錯誤，請稍後再試。', 'error');
+      console.error(err);
+      showStatus('送出失敗，請稍後再試。', 'error');
     }
 
     submitBtn.disabled = false;
